@@ -1,0 +1,42 @@
+services: 
+  app:
+    build: 
+        context: . 
+    container_name: laravel_app
+    ports:
+      - '${APP_PORT}:8000'
+    env_file:
+      - .env.laravel
+    networks: 
+      - laravel_network
+    depends_on:
+      - db
+  
+  db: 
+    build: 
+      context: ./docker/postgres
+    container_name: laravel_db
+    ports : 
+      - "${POSTGRES_PORT}:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+    volumes:  
+      - db:/var/lib/postgresql/data
+      - ./docker/postgres/init-user.sh:/docker-entrypoint-initdb.d/init-user.sh
+    networks: 
+      - laravel_network
+
+networks:
+  laravel_network:
+    name: laravel_network
+    driver: bridge 
+    external: false
+
+volumes: 
+  db:
+
