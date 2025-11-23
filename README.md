@@ -39,8 +39,11 @@ Com tudo configurado, foi possível gerar a imagem e subir os containers sem err
 ## Inicializando a aplicação
 Antes de criar a imagem, deve-se criar 2 envs e configurar suas variáveis de ambiente, como a porta em que o postgres vai estar e suas credenciais. 
 
-- Copie o .env.example.laravel e renomeie como .env.laravel. Nele, configure o db_username, password, nome do banco e a porta. Lembre-se que estamos utilizando o postgres. 
-- Depois copie o .env.example.docker e renomeie como .env. Nele, configure as mesmas variáveis de username, password e nome do banco (primeiros os padrões do postgres). E depois configure essas mesmas variáveis mais para o usuário específico da nossa aplicação. Note que essas variáveis serão utilizadas no init-user.sh para criar o usuário e dar as devidas permissões a ele. 
+- Copie o .env.example.laravel e renomeie como .env.laravel. 
+    - Nele, configure o db_username, password, nome do banco e a porta. Lembre-se que estamos utilizando o postgres. 
+- Depois copie o .env.example.docker e renomeie como .env.
+    - Nele, configure as mesmas variáveis de username, password e nome do banco (primeiros os padrões do postgres).
+    - Em seguida configure essas mesmas variáveis mas para o usuário específico da nossa aplicação. Note que essas variáveis serão utilizadas no init-user.sh para criar o usuário e dar as devidas permissões a ele. 
 
 Com essas configurações feitas, basta seguir os seguintes comandos: 
 
